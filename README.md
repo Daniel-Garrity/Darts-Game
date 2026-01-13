@@ -27,5 +27,8 @@ This game allows you to play against your friends, track scores, turns, and play
 4. Bust rule: if you score more than your remaining points, your turn is canceled, and your score reverts.
 5. Continue until a player reaches exactly zero to win (Must finish the game on a double).
 
---License--
+## License
 This project is licensed under the [MIT License](LICENSE).
+
+## Author
+Daniel Garrity
