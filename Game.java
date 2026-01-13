@@ -61,7 +61,7 @@ public class Game{
             System.out.println("Invalid choice. Try again.");
         }
     }
-        System.out.println(firstPlayer.getName()+ "to throw first, GAME ON!");
+        System.out.println(firstPlayer.getName()+ " to throw first, GAME ON!");
         return firstPlayer;
     }
 
@@ -86,7 +86,7 @@ public class Game{
             System.out.println(player2.getName() + " to throw first, GAME ON!");
             bullUpFinished = true;
         } else {
-            System.out.println("It's a tie! Throw again.");//if both darts are outside bull or 25 continue bull up phase
+            System.out.println("Tie! Throw again.");//if both darts are outside bull or 25 continue bull up phase
         }
     }
 
@@ -150,15 +150,14 @@ private void playTurn(Player player) {
         break;
     }
 
-    int newScore = player.getScore() - turnTotal;
-
     // Bust check
-    if (newScore < 0) {
-        System.out.println("Bust! Score resets to " + startScore);
-        player.setScore(startScore);
-    } else {
-        player.setScore(newScore);
-    }
+if (turnTotal > player.getScore()) {
+    System.out.println("Bust! Score resets to " + startScore);
+    player.resetScore(startScore);
+} else {
+    player.applyTurn(turnTotal); // Pass the turn score, not the new total
+}
+
     // Table display for players
     System.out.println("\n--- Turn Summary ---");
     System.out.printf("| %-10s | %-5s |\n", "Player", "Turn Total");
@@ -178,6 +177,15 @@ private void playTurn(Player player) {
 public void endGame(Player winner){
 System.out.println("Congratulations! "+ winner.getName()+ " wins!");
     //add in some player stats at some stage e.g 3 dart average etc
+     // Print stats at end
+        System.out.println("\nPlayer Statistics");
+        System.out.println(winner.getName() + ": Winner!");
+        System.out.println("Turns taken: " + winner.getTurnsTaken());
+        System.out.println("Darts thrown: " + winner.getDartsThrown());
+        System.out.println("Highest turn: " +winner.getHighestScore());
+        System.out.printf("3-dart average: %.2f\n", winner.getThreeDartAverage());
 }
+
+
 }
 
